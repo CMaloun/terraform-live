@@ -50,4 +50,5 @@ module "bastion" {
 		vm_name_prefix = "${var.vm_name_prefix}"
 		vm_admin_password =  "${var.vm_admin_password}"
     vm_admin_username = "${var.vm_admin_username}"
+    network_security_group_name = "bastion-nsg"
 	}

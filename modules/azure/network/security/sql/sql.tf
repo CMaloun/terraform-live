@@ -21,6 +21,20 @@ resource "azurerm_subnet" "subnet" {
   network_security_group_id = "${azurerm_network_security_group.security_group.id}"
 }
 
+resource "azurerm_network_security_rule" "allow-mgmt-rdp" {
+  name                     = "${var.allow-mgmt-rdp["name"]}"
+  priority                     = "${var.allow-mgmt-rdp["priority"]}"
+  direction                   = "${var.allow-mgmt-rdp["direction"]}"
+  access                      = "${var.allow-mgmt-rdp["access"]}"
+  protocol                    = "${var.allow-mgmt-rdp["protocol"]}"
+  source_port_range           = "${var.allow-mgmt-rdp["sourcePortRange"]}"
+  destination_port_range      = "${var.allow-mgmt-rdp["destinationPortRange"]}"
+  source_address_prefix       = "${var.allow-mgmt-rdp["sourceAddressPrefix"]}"
+  destination_address_prefix  = "${var.allow-mgmt-rdp["destinationAddressPrefix"]}"
+  resource_group_name         = "${var.resource_group_name}"
+  network_security_group_name = "${var.network_security_group_name}"
+}
+
 resource "azurerm_network_security_rule" "security_rule_from_web" {
   name                     = "${var.security_rule_from_web["name"]}"
   priority                     = "${var.security_rule_from_web["priority"]}"

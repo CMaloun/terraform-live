@@ -1,7 +1,5 @@
 variable "resource_group_name" {}
-variable "prefix" {}
 variable "location" {}
-variable "address_space" { }
 variable "storage_account_name" {}
 variable "storage_account_type" {default = "Standard_GRS"}
 variable "storage_account_kind" {default = "Storage"}
@@ -9,15 +7,14 @@ variable "storage_account_tier" {default     = "Standard"}
 variable "storage_account_replication_type" {default     = "LRS"}
 variable "enabled_ip_forwarding" {default = false}
 variable "subnet_id" {}
-variable "admin_username" {default = "testuser"}
-variable "admin_password" {}
+variable "vm_admin_username" {default = "testuser"}
+variable "vm_admin_password" {}
 variable "vm_size" { default = "Standard_DS1_v2" }
 
 #virtual machines variables
 variable "vm_name_prefix" {}
-variable "vm_computername" {}
+variable "vm_computer_name" {}
 
-#https://raw.githubusercontent.com/mspnp/template-building-blocks/v1.0.0/templates/resources/Microsoft.Storage/storageAccounts/storageAccount.json
 resource "azurerm_storage_account" "sto-sql-vm0" {
   name                     = "${var.storage_account_name}sqlvm0"  #It would be better to have a unique identifier
   location                 = "${var.location}"
@@ -26,20 +23,17 @@ resource "azurerm_storage_account" "sto-sql-vm0" {
   account_type             = "${var.storage_account_type}"
 }
 
-#https://raw.githubusercontent.com/mspnp/template-building-blocks/v1.0.0/templates/resources/Microsoft.Compute/virtualMachines/virtualMachine-nic.json
 resource "azurerm_network_interface" "nic" {
   name                = "nicSQL${count.index}"
   location            = "${var.location}"
   resource_group_name = "${var.resource_group_name}"
   enable_ip_forwarding = "${var.enabled_ip_forwarding}"
-  #network_security_group_id = "${var.security_group_id}"
   count = 1
 
   ip_configuration {
     name                          = "ipconfigSQL${count.index}"
     subnet_id                     = "${var.subnet_id}"
     private_ip_address_allocation = "dynamic"
-    # private_ip_address = "${var.vm_ip_adresses[count.index]}"
     primary =  "true"
   }
 
@@ -87,9 +81,9 @@ resource "azurerm_virtual_machine" "vm0" {
   }
 
   os_profile {
-    computer_name  = "${var.vm_computername}"
-    admin_username = "${var.admin_username}"
-    admin_password = "${var.admin_password}"
+    computer_name  = "${var.vm_computer_name}"
+    admin_username = "${var.vm_admin_username}"
+    admin_password = "${var.vm_admin_password}"
   }
 }
 

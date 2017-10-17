@@ -19,6 +19,8 @@ variable "storage_account_type" {default = "Standard_GRS"}
 variable "storage_account_kind" {default = "Storage"}
 variable "storage_account_tier" {default     = "Standard"}
 variable "storage_account_replication_type" {default     = "LRS"}
+variable "network_security_group_name" {}
+
 
 #network interface variables
 variable "enabled_ip_forwarding" {default = false}

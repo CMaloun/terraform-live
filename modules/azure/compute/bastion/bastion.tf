@@ -14,11 +14,18 @@ resource "azurerm_public_ip" "bastionpip" {
     public_ip_address_allocation = "dynamic"
 }
 
+resource "azurerm_network_security_group" "security_group" {
+  name                  = "${var.network_security_group_name}"
+  location              = "${var.location}"
+  resource_group_name   = "${var.resource_group_name}"
+}
+
 resource "azurerm_network_interface" "nic" {
   name                = "nicBastion"
   location            = "${var.location}"
   resource_group_name = "${var.resource_group_name}"
   enable_ip_forwarding = "${var.enabled_ip_forwarding}"
+  network_security_group_id = "${azurerm_network_security_group.security_group.id}"
 
   ip_configuration {
     name                          = "ipconfigbastion"
@@ -95,4 +102,32 @@ resource "azurerm_virtual_machine_extension" "iaas" {
 SETTINGS
 }
 
+
+resource "azurerm_network_security_rule" "security_rule_rdp" {
+  name                        = "rdp"
+  priority                    = 101
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  destination_port_range      = "3389"
+  source_address_prefix       = "*"
+  destination_address_prefix  = "*"
+  resource_group_name         = "${var.resource_group_name}"
+  network_security_group_name = "${azurerm_network_security_group.security_group.name}"
+}
+
+resource "azurerm_network_security_rule" "security_rule_ssh" {
+  name                        = "ssh"
+  priority                    = 102
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  destination_port_range      = "22"
+  source_address_prefix       = "*"
+  destination_address_prefix  = "*"
+  resource_group_name         = "${var.resource_group_name}"
+  network_security_group_name = "${azurerm_network_security_group.security_group.name}"
+}
 output "bastion_id" { value = "${azurerm_virtual_machine.vm.id}" }

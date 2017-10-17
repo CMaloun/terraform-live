@@ -1,4 +1,6 @@
-
+variable "resource_group_name" {}
+variable "aads_parameters_uri" {}
+variable "aads_template_uri" {}
 
 resource "azurerm_template_deployment" "adds" {
   name                = "addsdeployment"
@@ -36,7 +38,7 @@ resource "azurerm_template_deployment" "adds" {
         "ad": "[concat(parameters('parameterRootUri'), 'ad.parameters.json')]",
         "adPrimaryExtension": "[concat(parameters('parameterRootUri'), 'create-adds-forest-extension.parameters.json')]",
         "adSecondaryExtension": "[concat(parameters('parameterRootUri'), 'add-adds-domain-controller.parameters.json')]",
-        "vnetDnsUpdate": "[concat(parameters('parameterRootUri'), 'virtualNetwork-adds-dns.parameters.json')]",
+        "vnetDnsUpdate": "[concat(parameters('parameterRootUri'), 'virtualNetwork-adds-dns.parameters.json')]"
       }
     }
   },
@@ -44,10 +46,7 @@ resource "azurerm_template_deployment" "adds" {
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2015-01-01",
-      "name": "ra-ntier-sql-ad-deployment",
-      "dependsOn": [
-        "ts-vnet-deployment"
-      ],
+      "name": "ad-deployment",
       "properties": {
         "mode": "Incremental",
         "templateLink": {
@@ -62,9 +61,9 @@ resource "azurerm_template_deployment" "adds" {
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2015-01-01",
-      "name": "ra-ntier-sql-update-dns",
+      "name": "update-dns",
       "dependsOn": [
-        "ra-ntier-sql-ad-deployment"
+        "ad-deployment"
       ],
       "properties": {
         "mode": "Incremental",
@@ -80,9 +79,9 @@ resource "azurerm_template_deployment" "adds" {
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2015-01-01",
-      "name": "ra-ntier-sql-primary-ad-ext",
+      "name": "primary-ad-ext",
       "dependsOn": [
-        "ra-ntier-sql-update-dns"
+        "update-dns"
       ],
       "properties": {
         "mode": "Incremental",
@@ -98,9 +97,9 @@ resource "azurerm_template_deployment" "adds" {
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2015-01-01",
-      "name": "ra-ntier-sql-secondary-ad-ext",
+      "name": "secondary-ad-ext",
       "dependsOn": [
-        "ra-ntier-sql-primary-ad-ext"
+        "primary-ad-ext"
       ],
       "properties": {
         "mode": "Incremental",
