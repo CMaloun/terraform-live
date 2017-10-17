@@ -5,7 +5,7 @@
     "virtualMachinesExtensionSettings": {
       "value": [
         {
-          "vms": [ "ra-ntier-sql-ad-vm1" ],
+          "vms": [ "sandbox-ad-vm1" ],
           "extensions": [
             {
               "name": "install-adds-forest",
@@ -33,4 +33,3 @@
     }
   }
 }
-

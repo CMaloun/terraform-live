@@ -5,7 +5,7 @@
     "virtualMachinesExtensionSettings": {
       "value": [
         {
-          "vms": [ "ra-ntier-sql-ad-vm2" ],
+          "vms": [ "sandbox-ad-vm2" ],
           "extensions": [
             {
               "name": "join-ad-domain",
@@ -53,4 +53,3 @@
     }
   }
 }
-

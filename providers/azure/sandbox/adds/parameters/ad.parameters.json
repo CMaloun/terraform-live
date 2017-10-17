@@ -4,7 +4,7 @@
   "parameters": {
     "virtualMachinesSettings": {
       "value": {
-        "namePrefix": "ra-ntier-sql-ad",
+        "namePrefix": "sandbox-ad",
         "computerNamePrefix": "ad",
         "size": "Standard_DS1_v2",
         "osType": "windows",
@@ -52,7 +52,7 @@
     "virtualNetworkSettings": {
       "value": {
         "name": "ts-vnet",
-        "resourceGroup": "sandbox1"
+        "resourceGroup": "sandbox-test"
       }
     },
     "buildingBlockSettings": {
