@@ -1,10 +1,6 @@
 variable "resource_group_name" {}
-variable "prefix" {}
-variable "location" {}
-variable "client_id" {}
-variable "client_secret" {}
-variable "subscription_id" {}
-variable "tenant_id" {}
+variable "aads_parameters_uri" {}
+variable "aads_template_uri" {}
 
 
 provider "azurerm" {
@@ -24,6 +20,8 @@ terraform {
   }
 }
 module "addsa_azure" {
-  source = "../../../../modules/azure/compute/adds"
-  resource_group_name = "${azurerm_resource_group.sandbox.name}"
+  source                = "../../../../modules/azure/compute/adds"
+  resource_group_name   = "${azurerm_resource_group.sandbox.name}"
+  aads_parameters_uri   = "${var.aads_parameters_uri}"
+  aads_template_uri   = "${var.aads_template_uri}"
 }

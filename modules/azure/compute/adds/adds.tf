@@ -11,14 +11,14 @@ resource "azurerm_template_deployment" "adds" {
   "parameters": {
     "templateRootUri": {
       "type": "string",
-      "defaultValue": "https://raw.githubusercontent.com/mspnp/template-building-blocks/v1.0.0/",
+      "defaultValue": "${var.aads_template_uri}",
       "metadata": {
         "description": "Root path for templates"
       }
     },
     "parameterRootUri": {
       "type": "string",
-      "defaultValue": "https://raw.githubusercontent.com/CMaloun/reference-architectures/master/virtual-machines/n-tier-windows/parameters/",
+      "defaultValue": "${var.aads_parameters_uri}",
       "metadata": {
         "decription": "Root path for parameters"
       }
