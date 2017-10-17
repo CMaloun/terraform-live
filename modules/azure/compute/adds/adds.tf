@@ -33,10 +33,10 @@ resource "azurerm_template_deployment" "adds" {
         "extensions": "[concat(parameters('templateRootUri'), 'templates/buildingBlocks/virtualMachine-extensions/azuredeploy.json')]"
       },
       "parameter": {
-        "ad": "[concat(parameters('parameterRootUri'), 'adds/ad.parameters.json')]",
-        "adPrimaryExtension": "[concat(parameters('parameterRootUri'), 'adds/create-adds-forest-extension.parameters.json')]",
-        "adSecondaryExtension": "[concat(parameters('parameterRootUri'), 'adds/add-adds-domain-controller.parameters.json')]",
-        "vnetDnsUpdate": "[concat(parameters('parameterRootUri'), 'adds/virtualNetwork-adds-dns.parameters.json')]",
+        "ad": "[concat(parameters('parameterRootUri'), 'ad.parameters.json')]",
+        "adPrimaryExtension": "[concat(parameters('parameterRootUri'), 'create-adds-forest-extension.parameters.json')]",
+        "adSecondaryExtension": "[concat(parameters('parameterRootUri'), 'add-adds-domain-controller.parameters.json')]",
+        "vnetDnsUpdate": "[concat(parameters('parameterRootUri'), 'virtualNetwork-adds-dns.parameters.json')]",
       }
     }
   },
