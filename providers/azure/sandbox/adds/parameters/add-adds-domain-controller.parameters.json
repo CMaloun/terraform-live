@@ -13,8 +13,7 @@
               "type": "JsonADDomainExtension",
               "typeHandlerVersion": "1.3",
               "autoUpgradeMinorVersion": true,
-              "settingsConfigMapperUri": "https://raw.githubusercontent.com/mspnp/template-building-blocks/v1.0.0/templates/resources/Microsoft.Compute/virtualMachines/extensions/vm-extension-passthrough-settings-mapper.json",
-              "settingsConfig": {
+              "settings": {
                 "Name": "contoso.com",
                 "OUPath": "",
                 "User": "contoso.com\\testuser",
@@ -30,21 +29,14 @@
               "publisher": "Microsoft.Compute",
               "type": "CustomScriptExtension",
               "typeHandlerVersion": "1.8",
-              "autoUpgradeMinorVersion": false,
-              "settingsConfigMapperUri": "https://raw.githubusercontent.com/mspnp/reference-architectures/master/virtual-machines/n-tier-windows/templates/adds/adds-domain-controller-extension-settings-mapper.json",
-              "settingsConfig": {
-                "activeDirectorySettings": {
-                  "domainName": "contoso.com",
-                  "adminUser": "testuser",
-                  "adminPassword": "AweS0me@PW",
-                  "siteName": "Default-First-Site-Name",
-                  "safeModePassword": "Saf3M0de@PW"
-                },
+              "autoUpgradeMinorVersion": true,
+              "settings": {
                 "fileUris": [
                   "https://raw.githubusercontent.com/mspnp/reference-architectures/master/virtual-machines/n-tier-windows/extensions/adds.ps1"
                 ]
               },
               "protectedSettingsConfig": {
+                "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File adds.ps1 -AdminUser adminUser -AdminPassword testPassw0rd!23 -SafeModePassword Saf3M0de@PW -DomainName contoso.com -SiteName Default-First-Site-Name"
               }
             }
           ]
