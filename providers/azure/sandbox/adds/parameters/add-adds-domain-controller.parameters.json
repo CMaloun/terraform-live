@@ -32,11 +32,11 @@
               "autoUpgradeMinorVersion": true,
               "settings": {
                 "fileUris": [
-                  "https://raw.githubusercontent.com/mspnp/reference-architectures/master/virtual-machines/n-tier-windows/extensions/adds.ps1"
+                  "https://raw.githubusercontent.com/mspnp/reference-architectures/master/scripts/windows/ad/adds.ps1"
                 ]
               },
               "protectedSettingsConfig": {
-                "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File adds.ps1 -AdminUser adminUser -AdminPassword testPassw0rd!23 -SafeModePassword Saf3M0de@PW -DomainName contoso.com -SiteName Default-First-Site-Name"
+                "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File adds.ps1 -AdminUser testuser -AdminPassword AweS0me@PW -SafeModePassword Saf3M0de@PW -DomainName contoso.com -SiteName Default-First-Site-Name"
               }
             }
           ]
