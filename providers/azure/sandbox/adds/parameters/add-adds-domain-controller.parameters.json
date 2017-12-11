@@ -13,6 +13,7 @@
               "type": "JsonADDomainExtension",
               "typeHandlerVersion": "1.3",
               "autoUpgradeMinorVersion": true,
+              "settingsConfigMapperUri":"",
               "settings": {
                 "Name": "contoso.com",
                 "OUPath": "",
@@ -30,6 +31,7 @@
               "type": "CustomScriptExtension",
               "typeHandlerVersion": "1.8",
               "autoUpgradeMinorVersion": true,
+              "settingsConfigMapperUri":"",
               "settings": {
                 "fileUris": [
                   "https://raw.githubusercontent.com/mspnp/reference-architectures/master/scripts/windows/ad/adds.ps1"

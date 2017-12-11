@@ -13,6 +13,7 @@
               "type": "CustomScriptExtension",
               "typeHandlerVersion": "1.8",
               "autoUpgradeMinorVersion": true,
+              "settingsConfigMapperUri":"",
               "settings": {
                 "fileUris": [
                   "https://raw.githubusercontent.com/mspnp/reference-architectures/master/scripts/windows/ad/adds-forest.ps1"
@@ -29,6 +30,7 @@
                 "type": "CustomScriptExtension",
                 "typeHandlerVersion": "1.8",
                 "autoUpgradeMinorVersion": true,
+                "settingsConfigMapperUri":"",
                 "settings": {
                     "fileUris": [
                         "https://raw.githubusercontent.com/mspnp/reference-architectures/master/scripts/windows/ad/adds-replication-site.ps1"
