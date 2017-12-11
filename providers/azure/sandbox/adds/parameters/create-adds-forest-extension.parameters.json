@@ -18,7 +18,7 @@
                   "https://raw.githubusercontent.com/mspnp/reference-architectures/master/scripts/windows/ad/adds-forest.ps1"
                 ]
               },
-              "protectedSettingsConfig": {
+              "protectedSettings": {
                  "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File adds-forest.ps1 -DomainName contoso.com -DomainNetbiosName contoso -SafeModePassword Saf3M0de@PW"
               }
             },

@@ -20,7 +20,7 @@
                 "Restart": true,
                 "Options": 3
               },
-              "protectedSettingsConfig": {
+              "protectedSettings": {
                 "Password": "AweS0me@PW"
               }
             },
@@ -35,7 +35,7 @@
                   "https://raw.githubusercontent.com/mspnp/reference-architectures/master/scripts/windows/ad/adds.ps1"
                 ]
               },
-              "protectedSettingsConfig": {
+              "protectedSettings": {
                 "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File adds.ps1 -AdminUser testuser -AdminPassword AweS0me@PW -SafeModePassword Saf3M0de@PW -DomainName contoso.com -SiteName Default-First-Site-Name"
               }
             }
