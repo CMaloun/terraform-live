@@ -13,7 +13,7 @@
               "type": "CustomScriptExtension",
               "typeHandlerVersion": "1.8",
               "autoUpgradeMinorVersion": true,
-              "settingsConfigMapperUri":"",
+              "settingsConfigMapperUri":"https://raw.githubusercontent.com/mspnp/reference-architectures/master/identity/adds-forest/templates/onpremise/ad-forest-extension-settings-mapper.json",
               "settings": {
                 "fileUris": [
                   "https://raw.githubusercontent.com/mspnp/reference-architectures/master/scripts/windows/ad/adds-forest.ps1"
@@ -30,7 +30,7 @@
                 "type": "CustomScriptExtension",
                 "typeHandlerVersion": "1.8",
                 "autoUpgradeMinorVersion": true,
-                "settingsConfigMapperUri":"",
+                "settingsConfigMapperUri":"https://raw.githubusercontent.com/mspnp/reference-architectures/master/identity/adds-forest/templates/onpremise/ad-forest-extension-settings-mapper.json",
                 "settings": {
                     "fileUris": [
                         "https://raw.githubusercontent.com/mspnp/reference-architectures/master/scripts/windows/ad/adds-replication-site.ps1"
