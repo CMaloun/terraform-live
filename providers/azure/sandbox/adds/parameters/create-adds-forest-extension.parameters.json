@@ -1,46 +1,33 @@
-﻿{
+{
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
     "virtualMachinesExtensionSettings": {
       "value": [
         {
-          "vms": [ "sandbox-ad-vm1" ],
+          "vms": [ "ad-ad-primary" ],
           "extensions": [
             {
               "name": "install-adds-forest",
               "publisher": "Microsoft.Compute",
               "type": "CustomScriptExtension",
               "typeHandlerVersion": "1.8",
-              "autoUpgradeMinorVersion": true,
-              "settingsConfigMapperUri":"https://raw.githubusercontent.com/mspnp/reference-architectures/master/identity/adds-forest/templates/onpremise/ad-forest-extension-settings-mapper.json",
-              "settings": {
+              "autoUpgradeMinorVersion": false,
+              "settingsConfigMapperUri": "https://raw.githubusercontent.com/mspnp/reference-architectures/master/virtual-machines/n-tier-windows/templates/adds/ad-forest-extension-settings-mapper.json",
+              "settingsConfig": {
+                "activeDirectorySettings": {
+                  "domainName": "contoso.com",
+                  "domainNetbiosName": "contoso",
+                  "safeModePassword": "Saf3M0de@PW"
+                },
                 "fileUris": [
-                  "https://raw.githubusercontent.com/mspnp/reference-architectures/master/scripts/windows/ad/adds-forest.ps1"
+                  "https://raw.githubusercontent.com/mspnp/reference-architectures/master/virtual-machines/n-tier-windows/extensions/adds-forest.ps1"
                 ]
               },
-              "protectedSettings": {
-                 "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File adds-forest.ps1 -DomainName contoso.com -DomainNetbiosName contoso -SafeModePassword Saf3M0de@PW"
+              "protectedSettingsConfig": {
               }
-            },
-
-            {
-                "name": "install-adds-forest",
-                "publisher": "Microsoft.Compute",
-                "type": "CustomScriptExtension",
-                "typeHandlerVersion": "1.8",
-                "autoUpgradeMinorVersion": true,
-                "settingsConfigMapperUri":"https://raw.githubusercontent.com/mspnp/reference-architectures/master/identity/adds-forest/templates/onpremise/ad-forest-extension-settings-mapper.json",
-                "settings": {
-                    "fileUris": [
-                        "https://raw.githubusercontent.com/mspnp/reference-architectures/master/scripts/windows/ad/adds-replication-site.ps1"
-                          ]
-                      },
-                    "protectedSettings": {
-                        "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File adds-replication-site.ps1 -DomainName contoso.com -AdminUser testuser -AdminPassword AweS0me@PW -SiteName Azbb-Tutorial-Site -OnPremsiteName Default-First-Site-Name -Cidr 10.0.0.0/16 -ReplicationFrequency 10"
-                      }
-                  }
-            ]
+            }
+          ]
         }
       ]
     }
