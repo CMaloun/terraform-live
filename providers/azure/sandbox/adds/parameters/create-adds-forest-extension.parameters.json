@@ -5,7 +5,7 @@
     "virtualMachinesExtensionSettings": {
       "value": [
         {
-          "vms": [ "ad-ad-primary" ],
+          "vms": [ "sandbox-ad-vm1" ],
           "extensions": [
             {
               "name": "install-adds-forest",
